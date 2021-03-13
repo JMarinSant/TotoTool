@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TotoToolDB.Models
 {
@@ -13,6 +16,12 @@ namespace TotoToolDB.Models
         public string EntidadFederativa { get; set; }
         public string Pais { get; set; }
         public string Paypal { get; set; }
-        public Int64 Telefono { get; set; }
+        public Int64? Telefono { get; set; }
+           
+        public virtual Carrito Carrito { get; set; }
+        public virtual ComentarioEnProducto ComentarioEnProducto { get; set; }
+        public virtual ICollection<ComentarioEnPublicacion> ComentarioEnPublicacion { get; set; }
+        public virtual ICollection<Docente> DocenteDocente { get; set; }
+        public virtual ICollection<Revista> Revista { get; set; }
     }
 }

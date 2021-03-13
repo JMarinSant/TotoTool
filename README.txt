@@ -17,6 +17,8 @@ El segundo tipo de usuario es el administrador. Tiene la capacidad de cambiar in
 
 4. Instrucciones de instalacion
 
-- Descargue
+- Descargue todas las carpetas que se encuentran en este repositorio.
 
-- Corra 
+- Ejecute el script de la creación de tablas que se encuentra en la carpeta SQL.
+
+- Abra la solución de Visual Studio y corra el programa.

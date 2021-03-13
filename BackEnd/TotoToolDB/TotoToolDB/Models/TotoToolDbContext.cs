@@ -29,10 +29,10 @@ namespace TotoToolDB.Models
                 entity.HasOne(e => e.Docente)
                     .WithOne(y => y.Carrito)
                     .HasForeignKey("FK_Carrito_IdDocente");
-                entity.HasMany(e => e.Producto)
-                    .WithMany(y => y.Carrito);                
+                          
             });
 
+        
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -116,8 +116,21 @@ namespace TotoToolDB.Models
                      .IsRequired(false);
                 entity.Property(e => e.Telefono)
                      .IsRequired(false);
-                entity.HasMany(e => e.DocenteDocente)
-                    .WithMany(y => y.DocenteDocente);
+            });
+
+            modelBuilder.Entity<DocenteDocente>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.IdDocenteASeguir)
+                    .IsRequired();
+                entity.Property(e => e.IdDocenteEnSesion)
+                    .IsRequired();
+                entity.HasOne(e => e.DocenteEnSesion)
+                     .WithMany(y => y.DocenteEnSesionCollection)
+                     .HasForeignKey("FK_IdDocenteEnSesion");
+                entity.HasOne(e => e.DocenteASeguir)
+                    .WithMany(y => y.DocenteASeguirCollection)
+                    .HasForeignKey("FK_IdDocenteASeguir");
             });
 
             modelBuilder.Entity<Historial>(entity => {
@@ -158,6 +171,21 @@ namespace TotoToolDB.Models
                 entity.HasOne(e => e.Categoria)
                     .WithMany(y => y.Producto)
                     .HasForeignKey("FK_IdCategoria");
+            });
+
+            modelBuilder.Entity<ProductoCarrito>(entity => {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.IdCarrito)
+                    .IsRequired();
+                entity.Property(e => e.IdProducto)
+                    .IsRequired();
+                entity.HasOne(e => e.Carrito)
+                     .WithMany(y => y.ProductoCarrito)
+                     .HasForeignKey("FK_ProductoCarrito_IdCarrito");
+                entity.HasOne(e => e.Producto)
+                    .WithMany(y => y.ProductoCarrito)
+                    .HasForeignKey("FK_ProductoCarrito_IdProducto");
+
             });
 
             modelBuilder.Entity<Revista>(entity => {

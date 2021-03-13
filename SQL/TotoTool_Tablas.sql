@@ -1,3 +1,26 @@
+/*
+	Equipo 05
+	Integrantes:
+	José Ángel Marín Santiago 1884108
+	Itzel Yaressi Moreno Tiznado 1665588
+
+	QUERY #1
+	Descripción:
+	Creación de la base de datos "TOTOTOOLDB"
+	Creación de las tablas:
+		- Docente
+		- DocenteDocente
+		- Historial
+		- Categoría
+		- Producto
+		- ProductoCarrito
+		- ComentarioEnProducto 
+		- Revista
+		- ComentarioEnPublicacion 
+
+	Fecha de Creación: 12 / 03 / 21.
+*/
+
 CREATE DATABASE TOTOTOOLDB
 GO
 

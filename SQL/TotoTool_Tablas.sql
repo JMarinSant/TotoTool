@@ -70,7 +70,9 @@ CREATE TABLE Historial (
 	NombreDelProducto VARCHAR(255) NOT NULL,
 	NombreDelVendedor VARCHAR(255) NOT NULL,
 	MontoExtraido DECIMAL(10,2) NOT NULL,
-	Paypal VARCHAR(50) NOT NULL
+	Paypal VARCHAR(50) NOT NULL,
+	IdHistorialDocente INT NOT NULL,
+	CONSTRAINT FK_IdHistorialDocente FOREIGN KEY (IdHistorialDocente) REFERENCES Docente(Id)
 )
 GO
 

@@ -150,7 +150,9 @@ namespace TotoToolDB.Models
                 entity.Property(e => e.Paypal)
                     .HasMaxLength(50)
                     .IsRequired();
-
+                entity.HasOne(e => e.Docente)
+                  .WithMany(y => y.Historial)
+                  .HasForeignKey("FK_IdHistorialDocente");
             });
 
             modelBuilder.Entity<Producto>(entity => {

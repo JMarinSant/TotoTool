@@ -24,5 +24,6 @@ namespace TotoToolDB.Models
         public virtual ICollection<DocenteDocente> DocenteASeguirCollection { get; set; }
         public virtual ICollection<DocenteDocente> DocenteEnSesionCollection { get; set; }
         public virtual ICollection<Revista> Revista { get; set; }
+        public virtual ICollection<Historial> Historial { get; set; }
     }
 }

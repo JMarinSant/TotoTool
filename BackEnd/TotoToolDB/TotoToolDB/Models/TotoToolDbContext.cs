@@ -17,6 +17,9 @@ namespace TotoToolDB.Models
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Revista> Revista { get; set; }
 
+        public TotoToolDbContext() { }
+        public TotoToolDbContext(DbContextOptions<TotoToolDbContext> options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Carrito>(entity =>

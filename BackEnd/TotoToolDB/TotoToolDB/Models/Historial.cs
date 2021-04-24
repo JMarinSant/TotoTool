@@ -13,7 +13,7 @@ namespace TotoToolDB.Models
         public string NombreDelVendedor { get; set; }
         public float MontoExtraido { get; set; }
         public string Paypal { get; set; }
-        public string IdHistorialDocente { get; set; }
+        public int HistorialDocenteId { get; set; }
 
         public virtual Docente Docente { get; set; }
     }

@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using TotoToolDB.Classes.Core;
 using TotoToolDB.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,10 +24,61 @@ namespace TotoToolDB.Controllers
         }
         // GET: api/<CategoriaController>
         [HttpGet]
-        public IEnumerable<Categoria> GetAll()
+        public IActionResult GetAll()
         {
-            List<Categoria> categoria = dbContext.Categoria.ToList();
-            return categoria;
+            try
+            {
+                CategoriaCore categoriaCore = new CategoriaCore(dbContext);
+                return Ok(categoriaCore.GetAll());
+            } catch(Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody]Categoria categoria)
+        {
+            try
+            {
+                CategoriaCore categoriaCore = new CategoriaCore(dbContext);
+                categoriaCore.Create(categoria);
+                return Ok("Categoria agregada exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update([FromBody] Categoria categoria,[FromRoute] int id)
+        {
+            try
+            {
+                CategoriaCore categoriaCore = new CategoriaCore(dbContext);
+                categoriaCore.Update(categoria, id);
+                return Ok("Categoria actualizada exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            try
+            {
+                CategoriaCore categoriaCore = new CategoriaCore(dbContext);
+                //categoriaCore.Update(categoria, id);
+                return Ok("Categoria actualizada exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         // GET api/<CategoriaController>/5

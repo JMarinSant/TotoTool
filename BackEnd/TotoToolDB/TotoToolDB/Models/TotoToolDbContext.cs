@@ -13,6 +13,9 @@ namespace TotoToolDB.Models
         public DbSet<ComentarioEnPublicacion> ComentarioEnPublicacion { get; set; }
         public DbSet<ComentarioEnProducto> ComentarioEnProducto { get; set; }
         public DbSet<Docente> Docente { get; set; }
+
+        public DbSet<ProductoCarrito> ProductoCarrito { get; set; }
+        public DbSet<DocenteDocente> DocenteDocente { get; set; }
         public DbSet<Historial> Historial { get; set; }
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Revista> Revista { get; set; }
@@ -29,13 +32,15 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.Property(e=> e.Estado)
                     .IsRequired();
-                entity.HasOne(e => e.Docente)
+               /* entity.HasOne(e => e.Docente)
                     .WithOne(y => y.Carrito)
-                    .HasForeignKey("FK_Carrito_IdDocente");
+                    .HasConstraintName("FK_Carrito_IdDocente");*/
                           
             });
 
-        
+
+
+
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -61,12 +66,12 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.Property(e => e.IdDocente)
                     .IsRequired();
-                entity.HasOne(e => e.Docente)
+               /* entity.HasOne(e => e.Docente)
                     .WithOne(y => y.ComentarioEnProducto)
-                    .HasForeignKey("FK_ComentarioEnPublicacion_IdDocente");
+                    .HasConstraintName("FK_ComentarioEnPublicacion_IdDocente");*/
                 entity.HasOne(e => e.Producto)
                     .WithMany(y => y.ComentarioEnProducto)
-                    .HasForeignKey("FK_ComentarioEnProducto_IdProducto");
+                    .HasConstraintName("FK_ComentarioEnProducto_IdProducto");
             });
 
             modelBuilder.Entity<ComentarioEnPublicacion>(entity => {
@@ -84,10 +89,10 @@ namespace TotoToolDB.Models
 
                 entity.HasOne(e => e.Docente)
                     .WithMany(y => y.ComentarioEnPublicacion)
-                    .HasForeignKey("FK_ComentarioEnPublicacion_IdDocente");
+                    .HasConstraintName("FK_ComentarioEnPublicacion_IdDocente");
                 entity.HasOne(e => e.Revista)
                     .WithMany(y => y.ComentarioEnPublicacion)
-                    .HasForeignKey("FK_ComentarioEnPublicacion_IdRevista");
+                    .HasConstraintName("FK_ComentarioEnPublicacion_IdRevista");
             });
 
             modelBuilder.Entity<Docente>(entity =>
@@ -124,16 +129,16 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<DocenteDocente>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.IdDocenteASeguir)
+                entity.Property(e => e.DocenteASeguirId)
                     .IsRequired();
-                entity.Property(e => e.IdDocenteEnSesion)
+                entity.Property(e => e.DocenteEnSesionId)
                     .IsRequired();
                 entity.HasOne(e => e.DocenteEnSesion)
                      .WithMany(y => y.DocenteEnSesionCollection)
-                     .HasForeignKey("FK_IdDocenteEnSesion");
+                     .HasConstraintName("FK_IdDocenteEnSesion");
                 entity.HasOne(e => e.DocenteASeguir)
                     .WithMany(y => y.DocenteASeguirCollection)
-                    .HasForeignKey("FK_IdDocenteASeguir");
+                    .HasConstraintName("FK_IdDocenteASeguir");
             });
 
             modelBuilder.Entity<Historial>(entity => {
@@ -155,7 +160,7 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.HasOne(e => e.Docente)
                   .WithMany(y => y.Historial)
-                  .HasForeignKey("FK_IdHistorialDocente");
+                  .HasConstraintName("FK_IdHistorialDocente");
             });
 
             modelBuilder.Entity<Producto>(entity => {
@@ -171,11 +176,11 @@ namespace TotoToolDB.Models
                 entity.Property(e => e.Imagen)
                     .HasMaxLength(255)
                     .IsRequired();
-                entity.Property(e => e.IdCategoria)
+                entity.Property(e => e.CategoriaId)
                     .IsRequired();
                 entity.HasOne(e => e.Categoria)
                     .WithMany(y => y.Producto)
-                    .HasForeignKey("FK_IdCategoria");
+                    .HasConstraintName("FK_IdCategoria");
             });
 
             modelBuilder.Entity<ProductoCarrito>(entity => {
@@ -186,10 +191,10 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.HasOne(e => e.Carrito)
                      .WithMany(y => y.ProductoCarrito)
-                     .HasForeignKey("FK_ProductoCarrito_IdCarrito");
+                     .HasConstraintName("FK_ProductoCarrito_IdCarrito");
                 entity.HasOne(e => e.Producto)
                     .WithMany(y => y.ProductoCarrito)
-                    .HasForeignKey("FK_ProductoCarrito_IdProducto");
+                    .HasConstraintName("FK_ProductoCarrito_IdProducto");
 
             });
 
@@ -205,7 +210,7 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.HasOne(e => e.Docente)
                     .WithMany(y => y.Revista)
-                    .HasForeignKey("FK_Revista_IdDocente");
+                    .HasConstraintName("FK_Revista_IdDocente");
             });
         }
     }

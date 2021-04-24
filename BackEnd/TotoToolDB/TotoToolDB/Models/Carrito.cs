@@ -11,7 +11,7 @@ namespace TotoToolDB.Models
         public int IdDocente { get; set; }
         public bool Estado { get; set; }
 
-        public virtual Docente Docente { get; set; }
+        //public virtual Docente Docente { get; set; }
         public virtual ICollection<ProductoCarrito> ProductoCarrito { get; set; }
     }
 }

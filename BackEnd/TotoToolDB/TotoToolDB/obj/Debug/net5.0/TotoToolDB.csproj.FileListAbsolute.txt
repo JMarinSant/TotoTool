@@ -182,3 +182,6 @@ C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\
 C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\obj\Debug\net5.0\ref\TotoToolDB.dll
 C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\obj\Debug\net5.0\TotoToolDB.pdb
 C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\obj\Debug\net5.0\TotoToolDB.genruntimeconfig.cache
+C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\joanm\OneDrive\Documents\GitHub\TotoTool\BackEnd\TotoToolDB\TotoToolDB\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

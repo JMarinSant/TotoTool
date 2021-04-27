@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +39,7 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Actualizar([FromBody] Revista revista, [FromBody] int id)
         {
             try
@@ -74,3 +74,4 @@ namespace TotoToolDB.Controllers
         }
     }
 }
+*/

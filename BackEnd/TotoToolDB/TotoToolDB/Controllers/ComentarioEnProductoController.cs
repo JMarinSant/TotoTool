@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +39,8 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Actualizar([FromBody] ComentarioEnProducto comentarioEnProducto, [FromBody] int id)
+        [HttpPut("{id}")]
+        public IActionResult Actualizar([FromBody] ComentarioEnProducto comentarioEnProducto, [FromRoute] int id)
         {
             try
             {
@@ -74,3 +74,4 @@ namespace TotoToolDB.Controllers
         }
     }
 }
+*/

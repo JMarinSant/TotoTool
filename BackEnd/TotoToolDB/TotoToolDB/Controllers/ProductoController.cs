@@ -40,8 +40,8 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Actualizar([FromBody] Producto producto, [FromBody] int id)
+        [HttpPut("{id}")]
+        public IActionResult Actualizar([FromBody] Producto producto, [FromRoute] int id)
         {
             try
             {

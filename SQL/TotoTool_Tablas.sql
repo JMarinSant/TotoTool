@@ -53,10 +53,10 @@ GO
 
 CREATE TABLE DocenteDocente (
 	Id INT IDENTITY PRIMARY KEY,
-	IdDocenteEnSesion INT NOT NULL,
-	IdDocenteASeguir INT NOT NULL,
-	CONSTRAINT FK_IdDocenteEnSesion FOREIGN KEY (IdDocenteEnSesion) REFERENCES Docente(Id),
-	CONSTRAINT FK_IdDocenteASeguir FOREIGN KEY (IdDocenteASeguir) REFERENCES Docente(Id)
+	DocenteEnSesionId INT NOT NULL,
+	DocenteASeguirId INT NOT NULL,
+	CONSTRAINT FK_IdDocenteEnSesion FOREIGN KEY (DocenteEnSesionId) REFERENCES Docente(Id),
+	CONSTRAINT FK_IdDocenteASeguir FOREIGN KEY (DocenteASeguirId) REFERENCES Docente(Id)
 )
 GO
 
@@ -71,8 +71,8 @@ CREATE TABLE Historial (
 	NombreDelVendedor VARCHAR(255) NOT NULL,
 	MontoExtraido DECIMAL(10,2) NOT NULL,
 	Paypal VARCHAR(50) NOT NULL,
-	IdHistorialDocente INT NOT NULL,
-	CONSTRAINT FK_IdHistorialDocente FOREIGN KEY (IdHistorialDocente) REFERENCES Docente(Id)
+	HistorialDocenteId INT NOT NULL,
+	CONSTRAINT FK_IdHistorialDocente FOREIGN KEY (HistorialDocenteId) REFERENCES Docente(Id)
 )
 GO
 
@@ -96,8 +96,8 @@ CREATE TABLE Producto (
 	Descripcion VARCHAR(MAX) NOT NULL,
 	Precio DECIMAL(10,2) NOT NULL,
 	Imagen VARCHAR(255) NOT NULL,
-	IdCategoria INT NOT NULL,
-	CONSTRAINT FK_IdCategoria FOREIGN KEY (IdCategoria) REFERENCES Categoria(Id)
+	CategoriaId INT NOT NULL,
+	CONSTRAINT FK_IdCategoria FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id)
 )
 GO
 
@@ -107,9 +107,9 @@ GO
 
 CREATE TABLE Carrito (
 	Id INT IDENTITY PRIMARY KEY,
-	IdDocente INT NOT NULL,
+	DocenteId INT NOT NULL,
 	Estado BIT NOT NULL,
-	CONSTRAINT FK_Carrito_IdDocente FOREIGN KEY (IdDocente) REFERENCES Docente(Id)
+	CONSTRAINT FK_Carrito_IdDocente FOREIGN KEY (DocenteId) REFERENCES Docente(Id)
 )
 GO
 
@@ -119,10 +119,10 @@ GO
 
 CREATE TABLE ProductoCarrito (
 	Id INT IDENTITY PRIMARY KEY,
-	IdProducto INT NOT NULL,
-	IdCarrito INT NOT NULL,
-	CONSTRAINT FK_ProductoCarrito_IdProducto FOREIGN KEY (IdProducto) REFERENCES Producto(Id),
-	CONSTRAINT FK_ProductoCarrito_IdCarrito FOREIGN KEY (IdCarrito) REFERENCES Carrito(Id)
+	ProductoId INT NOT NULL,
+	CarritoId INT NOT NULL,
+	CONSTRAINT FK_ProductoCarrito_IdProducto FOREIGN KEY (ProductoId) REFERENCES Producto(Id),
+	CONSTRAINT FK_ProductoCarrito_IdCarrito FOREIGN KEY (CarritoId) REFERENCES Carrito(Id)
 )
 GO
 
@@ -136,10 +136,10 @@ CREATE TABLE ComentarioEnProducto (
 	Fecha DATE NOT NULL,
 	Hora TIME NOT NULL,
 	Valoracion FLOAT NOT NULL,
-	IdProducto INT NOT NULL,
-	IdDocente INT NOT NULL,
-	CONSTRAINT FK_ComentarioEnProducto_IdProducto FOREIGN KEY (IdProducto) REFERENCES Producto(Id),
-	CONSTRAINT FK_ComentarioEnProducto_IdDocente FOREIGN KEY (IdDocente) REFERENCES Docente(Id)
+	ProductoId INT NOT NULL,
+	DocenteId INT NOT NULL,
+	CONSTRAINT FK_ComentarioEnProducto_IdProducto FOREIGN KEY (ProductoId) REFERENCES Producto(Id),
+	CONSTRAINT FK_ComentarioEnProducto_IdDocente FOREIGN KEY (DocenteId) REFERENCES Docente(Id)
 )
 GO
 
@@ -151,8 +151,8 @@ CREATE TABLE Revista (
 	Id INT IDENTITY PRIMARY KEY,
 	Contenido VARCHAR(255) NOT NULL,
 	Imagen VARCHAR(100) NOT NULL,
-	IdDocente INT NOT NULL,
-	CONSTRAINT FK_Revista_IdDocente FOREIGN KEY (IdDocente) REFERENCES Docente(Id)
+	DocenteId INT NOT NULL,
+	CONSTRAINT FK_Revista_IdDocente FOREIGN KEY (DocenteId) REFERENCES Docente(Id)
 )
 GO
 
@@ -164,9 +164,9 @@ CREATE TABLE ComentarioEnPublicacion (
 	Id INT IDENTITY PRIMARY KEY,
 	Contenido VARCHAR(255) NOT NULL,
 	Fecha DATE NOT NULL,
-	IdDocente INT NOT NULL,
-	IdRevista INT NOT NULL,
-	CONSTRAINT FK_ComentarioEnPublicacion_IdDocente FOREIGN KEY (IdDocente) REFERENCES Docente(Id),
-	CONSTRAINT FK_ComentarioEnPublicacion_IdRevista FOREIGN KEY (IdRevista) REFERENCES Revista(Id)
+	DocenteId INT NOT NULL,
+	RevistaId INT NOT NULL,
+	CONSTRAINT FK_ComentarioEnPublicacion_IdDocente FOREIGN KEY (DocenteId) REFERENCES Docente(Id),
+	CONSTRAINT FK_ComentarioEnPublicacion_IdRevista FOREIGN KEY (RevistaId) REFERENCES Revista(Id)
 )	
 GO

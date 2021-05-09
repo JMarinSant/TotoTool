@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TotoToolDB",
+    "\\TotoToolDB\\bin",
+    "\\TotoToolDB\\bin\\Release\\net5.0",
+    "\\TotoToolDB\\bin\\Release\\net5.0\\ref",
+    "\\TotoToolDB\\Classes",
+    "\\TotoToolDB\\Classes\\Core",
+    "\\TotoToolDB\\Classes\\Error",
+    "\\TotoToolDB\\Controllers",
+    "\\TotoToolDB\\Views"
+  ],
+  "SelectedNode": "\\TotoToolDB\\bin\\Debug",
+  "PreviewInSolutionExplorer": false
+}

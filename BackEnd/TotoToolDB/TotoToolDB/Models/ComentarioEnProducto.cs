@@ -12,10 +12,10 @@ namespace TotoToolDB.Models
         public DateTime Fecha { get; set; }
         public DateTime Hora { get; set; }
         public float Valoracion { get; set; }
-        public int IdProducto { get; set; }
-        public int IdDocente { get; set; }
+        public int ProductoId { get; set; }
+        public int DocenteId { get; set; }
 
         public virtual Producto Producto { get; set; }
-        //public virtual Docente Docente { get; set; }
+        public virtual Docente Docente { get; set; }
     }
 }

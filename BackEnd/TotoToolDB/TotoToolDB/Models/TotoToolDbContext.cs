@@ -28,14 +28,15 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<Carrito>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.IdDocente)
+                entity.Property(e => e.DocenteId)
                     .IsRequired();
                 entity.Property(e=> e.Estado)
+                    .HasColumnType("bit")
                     .IsRequired();
-               /* entity.HasOne(e => e.Docente)
+                entity.HasOne(e => e.Docente)
                     .WithOne(y => y.Carrito)
-                    .HasConstraintName("FK_Carrito_IdDocente");*/
-                          
+                    .HasConstraintName("FK_Carrito_IdDocente");
+
             });
 
 
@@ -45,6 +46,7 @@ namespace TotoToolDB.Models
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre)
+                    .IsUnicode(false)
                     .IsRequired();               
             });
 
@@ -52,23 +54,24 @@ namespace TotoToolDB.Models
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Contenido)
+                    .IsUnicode(false)
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .IsRequired();
                 entity.Property(e => e.Hora)
-                    .HasColumnType("datetime")
+                    .HasColumnType("time")
                     .IsRequired();
                 entity.Property(e => e.Valoracion)
                     .IsRequired();
-                entity.Property(e => e.IdProducto)
+                entity.Property(e => e.ProductoId)
                     .IsRequired();
-                entity.Property(e => e.IdDocente)
+                entity.Property(e => e.DocenteId)
                     .IsRequired();
-               /* entity.HasOne(e => e.Docente)
+                entity.HasOne(e => e.Docente)
                     .WithOne(y => y.ComentarioEnProducto)
-                    .HasConstraintName("FK_ComentarioEnPublicacion_IdDocente");*/
+                    .HasConstraintName("FK_ComentarioEnProducto_IdDocente");
                 entity.HasOne(e => e.Producto)
                     .WithMany(y => y.ComentarioEnProducto)
                     .HasConstraintName("FK_ComentarioEnProducto_IdProducto");
@@ -77,14 +80,15 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<ComentarioEnPublicacion>(entity => {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Contenido)
+                     .IsUnicode(false)
                      .HasMaxLength(255)
                      .IsRequired();
                 entity.Property(e => e.Fecha)
-                     .HasColumnType("datetime")
+                     .HasColumnType("date")
                      .IsRequired();
-                entity.Property(e => e.IdDocente)
+                entity.Property(e => e.DocenteId)
                      .IsRequired();
-                entity.Property(e => e.IdRevista)
+                entity.Property(e => e.RevistaId)
                      .IsRequired();
 
                 entity.HasOne(e => e.Docente)
@@ -99,31 +103,39 @@ namespace TotoToolDB.Models
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre)
-                     .HasMaxLength(255)
-                     .IsRequired();
+                    .IsUnicode(false)
+                    .HasMaxLength(255)
+                    .IsRequired();
                 entity.Property(e => e.CorreoElectronico)
-                     .HasMaxLength(150)
-                     .IsRequired();
+                    .IsUnicode(false)
+                    .HasMaxLength(150)
+                    .IsRequired();
                 entity.Property(e => e.Contraseña)
-                     .HasMaxLength(50)
-                     .IsRequired();
+                    .IsUnicode(false)
+                    .HasMaxLength(50)
+                    .IsRequired();
                 entity.Property(e => e.Direccion)
-                     .HasMaxLength(255)
-                     .IsRequired(false);
+                    .IsUnicode(false)
+                    .HasMaxLength(255)
+                    .IsRequired(false);
                 entity.Property(e => e.Ciudad)
-                     .HasMaxLength(100)
-                     .IsRequired(false);
+                    .IsUnicode(false)
+                    .HasMaxLength(100)
+                    .IsRequired(false);
                 entity.Property(e => e.EntidadFederativa)
-                     .HasMaxLength(75)
-                     .IsRequired(false);
+                    .IsUnicode(false)
+                    .HasMaxLength(75)
+                    .IsRequired(false);
                 entity.Property(e => e.Pais)
-                     .HasMaxLength(50)
-                     .IsRequired(false);
+                    .IsUnicode(false)
+                    .HasMaxLength(50)
+                    .IsRequired(false);
                 entity.Property(e => e.Paypal)
-                     .HasMaxLength(50)
-                     .IsRequired(false);
+                    .IsUnicode(false)
+                    .HasMaxLength(50)
+                    .IsRequired(false);
                 entity.Property(e => e.Telefono)
-                     .IsRequired(false);
+                    .IsRequired(false);              
             });
 
             modelBuilder.Entity<DocenteDocente>(entity =>
@@ -144,18 +156,21 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<Historial>(entity => {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .IsRequired();
                 entity.Property(e => e.NombreDelProducto)
+                    .IsUnicode(false)
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.NombreDelVendedor)
+                    .IsUnicode(false)
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.MontoExtraido)
-                    .HasColumnType("float")
+                    .HasColumnType("decimal(10,2)")
                     .IsRequired();
                 entity.Property(e => e.Paypal)
+                    .IsUnicode(false)
                     .HasMaxLength(50)
                     .IsRequired();
                 entity.HasOne(e => e.Docente)
@@ -166,14 +181,17 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<Producto>(entity => {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre)
+                    .IsUnicode(false)
                     .HasMaxLength(100)
                     .IsRequired();
                 entity.Property(e => e.Descripcion)
+                    .IsUnicode(false)
                     .IsRequired();
                 entity.Property(e => e.Precio)
-                    .HasColumnType("float")
+                    .HasColumnType("decimal(10,2)")
                     .IsRequired();
                 entity.Property(e => e.Imagen)
+                    .IsUnicode(false)
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.CategoriaId)
@@ -185,9 +203,9 @@ namespace TotoToolDB.Models
 
             modelBuilder.Entity<ProductoCarrito>(entity => {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.IdCarrito)
+                entity.Property(e => e.CarritoId)
                     .IsRequired();
-                entity.Property(e => e.IdProducto)
+                entity.Property(e => e.ProductoId)
                     .IsRequired();
                 entity.HasOne(e => e.Carrito)
                      .WithMany(y => y.ProductoCarrito)
@@ -201,12 +219,14 @@ namespace TotoToolDB.Models
             modelBuilder.Entity<Revista>(entity => {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Contenido)
+                    .IsUnicode(false)
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.Imagen)
+                    .IsUnicode(false)
                     .HasMaxLength(100)
                     .IsRequired();
-                entity.Property(e => e.IdDocente)
+                entity.Property(e => e.DocenteId)
                     .IsRequired();
                 entity.HasOne(e => e.Docente)
                     .WithMany(y => y.Revista)

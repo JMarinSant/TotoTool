@@ -18,8 +18,8 @@ namespace TotoToolDB.Models
         public string Paypal { get; set; }
         public Int64? Telefono { get; set; }
            
-        //public virtual Carrito Carrito { get; set; }
-       // public virtual ComentarioEnProducto ComentarioEnProducto { get; set; }
+        public virtual Carrito Carrito { get; set; }
+        public virtual ComentarioEnProducto ComentarioEnProducto { get; set; }
         public virtual ICollection<ComentarioEnPublicacion> ComentarioEnPublicacion { get; set; }
         public virtual ICollection<DocenteDocente> DocenteASeguirCollection { get; set; }
         public virtual ICollection<DocenteDocente> DocenteEnSesionCollection { get; set; }

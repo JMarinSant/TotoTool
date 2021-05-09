@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joanm\\OneDrive\\Documents\\GitHub\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj": {}
+    "C:\\Users\\Familia Moreno\\Documents\\itzel\\FACULTAD\\PROWEB2\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joanm\\OneDrive\\Documents\\GitHub\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj": {
+    "C:\\Users\\Familia Moreno\\Documents\\itzel\\FACULTAD\\PROWEB2\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joanm\\OneDrive\\Documents\\GitHub\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj",
+        "projectUniqueName": "C:\\Users\\Familia Moreno\\Documents\\itzel\\FACULTAD\\PROWEB2\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj",
         "projectName": "TotoToolDB",
-        "projectPath": "C:\\Users\\joanm\\OneDrive\\Documents\\GitHub\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj",
-        "packagesPath": "C:\\Users\\joanm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joanm\\OneDrive\\Documents\\GitHub\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\obj\\",
+        "projectPath": "C:\\Users\\Familia Moreno\\Documents\\itzel\\FACULTAD\\PROWEB2\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\TotoToolDB.csproj",
+        "packagesPath": "C:\\Users\\Familia Moreno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Familia Moreno\\Documents\\itzel\\FACULTAD\\PROWEB2\\TotoTool\\BackEnd\\TotoToolDB\\TotoToolDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\joanm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Familia Moreno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

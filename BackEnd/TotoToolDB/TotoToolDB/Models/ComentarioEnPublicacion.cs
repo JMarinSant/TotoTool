@@ -10,8 +10,8 @@ namespace TotoToolDB.Models
         public int Id { get; set; }
         public string Contenido { get; set; }
         public DateTime Fecha { get; set; }
-        public int IdDocente { get; set; }
-        public int IdRevista { get; set; }
+        public int DocenteId { get; set; }
+        public int RevistaId { get; set; }
 
         public virtual Docente Docente { get; set; }
         public virtual Revista Revista { get; set; }

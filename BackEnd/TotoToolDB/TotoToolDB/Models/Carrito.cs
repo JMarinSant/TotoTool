@@ -8,10 +8,10 @@ namespace TotoToolDB.Models
     public class Carrito
     {
         public int Id { get; set; }
-        public int IdDocente { get; set; }
+        public int DocenteId { get; set; }
         public bool Estado { get; set; }
 
-        //public virtual Docente Docente { get; set; }
+        public virtual Docente Docente { get; set; }
         public virtual ICollection<ProductoCarrito> ProductoCarrito { get; set; }
     }
 }

@@ -12,8 +12,11 @@ SELECT * FROM Docente
 SELECT * FROM carrito
 
 
-INSERT INTO DocenteDocente(IdDocenteASeguir, IdDocenteEnSesion)
+INSERT INTO DocenteDocente(DocenteASeguirId, DocenteEnSesionId)
 VALUES (1, 2)
+
+INSERT INTO ComentarioEnProducto(Contenido, Fecha, Hora, Valoracion)
+VALUES ('muy bueno', '10/04/21', '06:10', '5.0')
 
 SELECT * FROM DocenteDocente
 SELECT * FROM Categoria

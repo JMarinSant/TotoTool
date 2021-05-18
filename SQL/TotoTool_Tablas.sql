@@ -20,7 +20,6 @@
 
 	Fecha de Creación: 12 / 03 / 21.
 */
-
 CREATE DATABASE TOTOTOOLDB
 GO
 

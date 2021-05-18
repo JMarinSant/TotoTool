@@ -45,8 +45,8 @@ namespace TotoToolDB.Classes.Core
                     if (Validar(comentarioEnProducto))
                     {
                         comentarioEnProductoAux.Contenido = comentarioEnProducto.Contenido;
-                        comentarioEnProductoAux.Fecha = comentarioEnProducto.Fecha;
-                        comentarioEnProductoAux.Hora = comentarioEnProducto.Hora;
+                       // comentarioEnProductoAux.Fecha = comentarioEnProducto.Fecha;
+                       // comentarioEnProductoAux.Hora = comentarioEnProducto.Hora;
                         comentarioEnProductoAux.Valoracion = comentarioEnProducto.Valoracion;
                         dbContext.Update(comentarioEnProductoAux);
                         dbContext.SaveChanges();

@@ -58,10 +58,10 @@ namespace TotoToolDB.Models
                     .HasMaxLength(255)
                     .IsRequired();
                 entity.Property(e => e.Fecha)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .IsRequired();
                 entity.Property(e => e.Hora)
-                    .HasColumnType("time")
+                    .HasColumnType("datetime")
                     .IsRequired();
                 entity.Property(e => e.Valoracion)
                     .IsRequired();

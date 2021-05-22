@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +22,13 @@ namespace TotoToolDB.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpPost]
-        public IActionResult Crear([FromBody] Historial historial)
+        [HttpGet("{id}")]
+        public IActionResult ObtenerHistorial([FromRoute] int id)
         {
             try
             {
                 HistorialCore historialCore = new HistorialCore(dbContext);
-                Resultado resultado = historialCore.Crear(historial);
-                if (resultado.codigo == 200)
-                    return Ok(resultado.mensaje);
-                return StatusCode(resultado.codigo, resultado.mensaje);
+                return Ok(historialCore.ObtenerHistorial(id));
             }
             catch (Exception ex)
             {
@@ -40,4 +37,4 @@ namespace TotoToolDB.Controllers
         }
 
     }
-}*/
+}

@@ -13,8 +13,9 @@ namespace TotoToolDB.Models
         public float Precio { get; set; }
         public string Imagen { get; set; }
         public int CategoriaId { get; set; }
-
+        public int DocenteId { get; set; }
         public virtual Categoria Categoria { get; set; }
+        public virtual Docente Docente { get; set; }
         public virtual ICollection<ProductoCarrito> ProductoCarrito { get; set; }
         public virtual ICollection<ComentarioEnProducto> ComentarioEnProducto { get; set; }
     }

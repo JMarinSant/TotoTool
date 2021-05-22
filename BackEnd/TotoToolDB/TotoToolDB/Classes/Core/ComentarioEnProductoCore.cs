@@ -34,12 +34,24 @@ namespace TotoToolDB.Classes.Core
             }
         }
 
-        public Resultado Actualizar(ComentarioEnProducto comentarioEnProducto, int id)
+        public List<ComentarioEnProducto> ComentarioEnProducto(int id)
+        {
+            try
+            {
+                return dbContext.ComentarioEnProducto.Where(x => x.ProductoId == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Resultado Actualizar(ComentarioEnProducto comentarioEnProducto, int id, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
-                ComentarioEnProducto comentarioEnProductoAux = dbContext.ComentarioEnProducto.FirstOrDefault(x => x.Id == id);
+                ComentarioEnProducto comentarioEnProductoAux = dbContext.ComentarioEnProducto.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion);
                 if (comentarioEnProducto != null)
                 {
                     if (Validar(comentarioEnProducto))
@@ -60,11 +72,11 @@ namespace TotoToolDB.Classes.Core
                 throw ex;
             }
         }
-        public Resultado Eliminar(int id) {
+        public Resultado Eliminar(int id, int docenteEnSesion) {
             try
             {
                 Resultados resultados = new Resultados();
-                ComentarioEnProducto comentarioEnProducto = dbContext.ComentarioEnProducto.FirstOrDefault(x => x.Id == id);
+                ComentarioEnProducto comentarioEnProducto = dbContext.ComentarioEnProducto.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion);
                 if (comentarioEnProducto != null)
                 {
                     dbContext.Remove(comentarioEnProducto);

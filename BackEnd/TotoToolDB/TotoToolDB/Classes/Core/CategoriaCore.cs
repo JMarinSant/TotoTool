@@ -21,7 +21,7 @@ namespace TotoToolDB.Classes.Core
                 /*List<Categoria> categoria = (from s in dbContext.Categoria
                                              where s.Nombre == "CATEGORIA1"
                                              select s).ToList();*/
-                return dbContext.Categoria.Where( x => x.Nombre == "Juguetes").ToList();
+                return dbContext.Categoria.ToList();
             } catch (Exception ex)
             {
                 throw ex;

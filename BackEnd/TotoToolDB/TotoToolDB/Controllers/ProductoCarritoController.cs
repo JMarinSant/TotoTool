@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +22,27 @@ namespace TotoToolDB.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpPost]
-        public IActionResult Crear([FromBody] ProductoCarrito productoCarrito)
+        [HttpGet("{usuarioEnSesion}")]
+        public IActionResult ProductosEnCarrito([FromRoute] int usuarioEnSesion)
         {
             try
             {
                 ProductoCarritoCore productoCarritoCore = new ProductoCarritoCore(dbContext);
-                Resultado resultado = productoCarritoCore.Agregar(productoCarrito);
+                return Ok(productoCarritoCore.ProductosEnCarrito(usuarioEnSesion));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost("{usuarioEnSesion}")]
+        public IActionResult Agregar([FromRoute] int usuarioEnSesion, [FromQuery] int idProducto)
+        {
+            try
+            {
+                ProductoCarritoCore productoCarritoCore = new ProductoCarritoCore(dbContext);
+                Resultado resultado = productoCarritoCore.Agregar(usuarioEnSesion, idProducto);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -40,13 +54,30 @@ namespace TotoToolDB.Controllers
         }
 
       
-        [HttpDelete]
-        public IActionResult Eliminar([FromQuery] int id)
+        [HttpDelete("{usuarioEnSesion}")]
+        public IActionResult Comprar([FromRoute] int usuarioEnSesion, [FromQuery] int idProducto)
         {
             try
             {
                 ProductoCarritoCore productoCarritoCore = new ProductoCarritoCore(dbContext);
-                Resultado resultado = productoCarritoCore.Eliminar(id);
+                Resultado resultado = productoCarritoCore.Eliminar(usuarioEnSesion, idProducto);
+                if (resultado.codigo == 200)
+                    return Ok(resultado.mensaje);
+                return StatusCode(resultado.codigo, resultado.mensaje);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpDelete("{usuarioEnSesion}")]
+        public IActionResult ComprarTodo([FromRoute] int usuarioEnSesion)
+        {
+            try
+            {
+                ProductoCarritoCore productoCarritoCore = new ProductoCarritoCore(dbContext);
+                Resultado resultado = productoCarritoCore.EliminarTodo(usuarioEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -57,4 +88,4 @@ namespace TotoToolDB.Controllers
             }
         }
     }
-}*/
+}

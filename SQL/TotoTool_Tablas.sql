@@ -96,7 +96,9 @@ CREATE TABLE Producto (
 	Precio DECIMAL(10,2) NOT NULL,
 	Imagen VARCHAR(255) NOT NULL,
 	CategoriaId INT NOT NULL,
-	CONSTRAINT FK_IdCategoria FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id)
+	DocenteId INT NOT NULL,
+	CONSTRAINT FK_IdCategoria FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id),
+	CONSTRAINT FK_IdDocenteProducto FOREIGN KEY (DocenteId) REFERENCES Docente(Id)
 )
 GO
 

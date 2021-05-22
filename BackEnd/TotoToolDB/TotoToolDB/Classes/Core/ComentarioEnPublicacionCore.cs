@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,12 +35,12 @@ namespace TotoToolDB.Classes.Core
             }
         }
 
-        public Resultado Actualizar(ComentarioEnPublicacion comentarioEnPublicacion, int id)
+        public Resultado Actualizar(ComentarioEnPublicacion comentarioEnPublicacion, int id, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
-                ComentarioEnPublicacion comentarioEnPublicacionAux = dbContext.ComentarioEnPublicacion.FirstOrDefault(x => x.Id == id);
+                ComentarioEnPublicacion comentarioEnPublicacionAux = dbContext.ComentarioEnPublicacion.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion);
                 if (comentarioEnPublicacionAux != null)
                 {
                     if (Validar(comentarioEnPublicacion))
@@ -60,12 +60,12 @@ namespace TotoToolDB.Classes.Core
             }
         }
 
-        public Resultado Eliminar (int id)
+        public Resultado Eliminar (int id, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
-                ComentarioEnPublicacion comentarioEnPublicacion = dbContext.ComentarioEnPublicacion.FirstOrDefault(x => x.Id == id);
+                ComentarioEnPublicacion comentarioEnPublicacion = dbContext.ComentarioEnPublicacion.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion );
                 if (comentarioEnPublicacion != null)
                 {
                     dbContext.Remove(comentarioEnPublicacion);
@@ -73,6 +73,18 @@ namespace TotoToolDB.Classes.Core
                     return resultados.SolicitudExitosa();
                 }
                 return resultados.SolicitudSinExito();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ComentarioEnPublicacion> ComentarioEnPublicacion(int id)
+        {
+            try
+            {
+                return dbContext.ComentarioEnPublicacion.Where(x => x.RevistaId == id).ToList();
             }
             catch (Exception ex)
             {
@@ -95,4 +107,3 @@ namespace TotoToolDB.Classes.Core
 
     }
 }
-*/

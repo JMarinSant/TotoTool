@@ -39,13 +39,27 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Actualizar([FromBody] ComentarioEnProducto comentarioEnProducto, [FromRoute] int id)
+        [HttpGet]
+        public IActionResult ComentarioEnProducto([FromQuery] int idProducto)
         {
             try
             {
                 ComentarioEnProductoCore comentarioEnPublicacionCoreCore = new ComentarioEnProductoCore(dbContext);
-                Resultado resultado = comentarioEnPublicacionCoreCore.Actualizar(comentarioEnProducto, id);
+                return Ok(comentarioEnPublicacionCoreCore.ComentarioEnProducto(idProducto));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPut("{docenteEnSesion}")]
+        public IActionResult Actualizar([FromBody] ComentarioEnProducto comentarioEnProducto, [FromQuery] int id, [FromRoute] int docenteEnSesion)
+        {
+            try
+            {
+                ComentarioEnProductoCore comentarioEnPublicacionCoreCore = new ComentarioEnProductoCore(dbContext);
+                Resultado resultado = comentarioEnPublicacionCoreCore.Actualizar(comentarioEnProducto, id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -56,13 +70,13 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Eliminar([FromQuery] int id)
+        [HttpDelete("{docenteEnSesion}")]
+        public IActionResult Eliminar([FromQuery] int id, [FromRoute] int docenteEnSesion)
         {
             try
             {
                 ComentarioEnProductoCore comentarioEnPublicacionCoreCore = new ComentarioEnProductoCore(dbContext);
-                Resultado resultado = comentarioEnPublicacionCoreCore.Eliminar(id);
+                Resultado resultado = comentarioEnPublicacionCoreCore.Eliminar(id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);

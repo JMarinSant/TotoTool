@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +22,13 @@ namespace TotoToolDB.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpPost]
-        public IActionResult Crear([FromBody] Revista revista)
+        [HttpPost("{id}")]
+        public IActionResult Crear([FromRoute] int id, [FromBody] Revista revista)
         {
             try
             {
                 RevistaCore revistaCore = new RevistaCore(dbContext);
-                Resultado resultado = revistaCore.Agregar(revista);
+                Resultado resultado = revistaCore.Agregar(revista, id);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -39,13 +39,13 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Actualizar([FromBody] Revista revista, [FromBody] int id)
+        [HttpPut("{docenteEnSesion}")]
+        public IActionResult Actualizar([FromBody] Revista revista, [FromQuery] int id, [FromRoute] int docenteEnSesion)
         {
             try
             {
                 RevistaCore RevistaCore = new RevistaCore(dbContext);
-                Resultado resultado = RevistaCore.Actualizar(revista, id);
+                Resultado resultado = RevistaCore.Actualizar(revista, id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -56,16 +56,44 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Eliminar([FromQuery] int id)
+        [HttpDelete("{docenteEnSesion}")]
+        public IActionResult Eliminar([FromQuery] int id, [FromRoute] int docenteEnSesion)
         {
             try
             {
                 RevistaCore RevistaCore = new RevistaCore(dbContext);
-                Resultado resultado = RevistaCore.Eliminar(id);
+                Resultado resultado = RevistaCore.Eliminar(id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpGet("{docenteEnSesion}")]
+        public IActionResult ObtenerMisRevistas([FromRoute] int docenteEnSesion)
+        {
+            try
+            {
+                RevistaCore RevistaCore = new RevistaCore(dbContext);
+                return Ok(RevistaCore.ObtenerRevista(docenteEnSesion));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult RevistasDeUnUsuario([FromQuery] int id)
+        {
+            try
+            {
+                RevistaCore RevistaCore = new RevistaCore(dbContext);
+                return Ok(RevistaCore.ObtenerRevista(id));
             }
             catch (Exception ex)
             {
@@ -74,4 +102,3 @@ namespace TotoToolDB.Controllers
         }
     }
 }
-*/

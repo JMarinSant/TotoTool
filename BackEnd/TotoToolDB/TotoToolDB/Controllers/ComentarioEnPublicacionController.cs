@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,13 +39,27 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Actualizar([FromBody] ComentarioEnPublicacion comentarioEnPublicacion, [FromBody] int id)
+        [HttpGet]
+        public IActionResult ComentarioEnPublicacion([FromQuery] int idRevista)
         {
             try
             {
                 ComentarioEnPublicacionCore comentarioEnPublicacionCoreCore = new ComentarioEnPublicacionCore(dbContext);
-                Resultado resultado = comentarioEnPublicacionCoreCore.Actualizar(comentarioEnPublicacion, id);
+                return Ok(comentarioEnPublicacionCoreCore.ComentarioEnPublicacion(idRevista));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPut("{docenteEnSesion}")]
+        public IActionResult Actualizar([FromBody] ComentarioEnPublicacion comentarioEnPublicacion, [FromQuery] int id,[FromRoute] int docenteEnSesion)
+        {
+            try
+            {
+                ComentarioEnPublicacionCore comentarioEnPublicacionCoreCore = new ComentarioEnPublicacionCore(dbContext);
+                Resultado resultado = comentarioEnPublicacionCoreCore.Actualizar(comentarioEnPublicacion, id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -56,13 +70,13 @@ namespace TotoToolDB.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Eliminar([FromQuery] int id)
+        [HttpDelete("{docenteEnSesion}")]
+        public IActionResult Eliminar([FromRoute] int id, int docenteEnSesion)
         {
             try
             {
                 ComentarioEnPublicacionCore comentarioEnPublicacionCoreCore = new ComentarioEnPublicacionCore(dbContext);
-                Resultado resultado = comentarioEnPublicacionCoreCore.Eliminar(id);
+                Resultado resultado = comentarioEnPublicacionCoreCore.Eliminar(id, docenteEnSesion);
                 if (resultado.codigo == 200)
                     return Ok(resultado.mensaje);
                 return StatusCode(resultado.codigo, resultado.mensaje);
@@ -73,4 +87,4 @@ namespace TotoToolDB.Controllers
             }
         }
     }
-}*/
+}

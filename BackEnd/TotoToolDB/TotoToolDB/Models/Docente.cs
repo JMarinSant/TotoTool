@@ -21,6 +21,7 @@ namespace TotoToolDB.Models
         public virtual Carrito Carrito { get; set; }
         public virtual ComentarioEnProducto ComentarioEnProducto { get; set; }
         public virtual ICollection<ComentarioEnPublicacion> ComentarioEnPublicacion { get; set; }
+        public virtual ICollection<Producto> Producto { get; set; }
         public virtual ICollection<DocenteDocente> DocenteASeguirCollection { get; set; }
         public virtual ICollection<DocenteDocente> DocenteEnSesionCollection { get; set; }
         public virtual ICollection<Revista> Revista { get; set; }

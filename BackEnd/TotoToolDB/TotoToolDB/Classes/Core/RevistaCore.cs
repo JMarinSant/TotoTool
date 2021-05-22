@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,13 +15,14 @@ namespace TotoToolDB.Classes.Core
             this.dbContext = dbContext;
         }
 
-        public Resultado Agregar(Revista revista)
+        public Resultado Agregar(Revista revista, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
                 if (Validar(revista))
                 {
+                    revista.DocenteId = docenteEnSesion;
                     dbContext.Add(revista);
                     dbContext.SaveChanges();
                     return resultados.RegistroExitoso();
@@ -33,19 +34,19 @@ namespace TotoToolDB.Classes.Core
             }
         }
 
-        public Resultado Actualizar(Revista revista, int id)
+        public Resultado Actualizar(Revista revista, int id, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
-                Revista revistaAux = dbContext.Revista.FirstOrDefault(x => x.Id == id);
+                Revista revistaAux = dbContext.Revista.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion);
                 if (revistaAux != null)
                 {
                     if (Validar(revista))
                     {
                         revistaAux.Contenido = revista.Contenido;
                         revistaAux.Imagen = revista.Imagen;
-                        dbContext.Update(revista);
+                        dbContext.Update(revistaAux);
                         dbContext.SaveChanges();
                         return resultados.RegistroExitoso();
                     }
@@ -58,12 +59,12 @@ namespace TotoToolDB.Classes.Core
             }
         }
 
-        public Resultado Eliminar(int id)
+        public Resultado Eliminar(int id, int docenteEnSesion)
         {
             try
             {
                 Resultados resultados = new Resultados();
-                Revista revista = dbContext.Revista.FirstOrDefault(x => x.Id == id);
+                Revista revista = dbContext.Revista.FirstOrDefault(x => x.Id == id && x.DocenteId == docenteEnSesion);
                 if (revista != null)
                 {
                     dbContext.Remove(revista);
@@ -71,6 +72,18 @@ namespace TotoToolDB.Classes.Core
                     return resultados.SolicitudExitosa();
                 }
                 return resultados.SolicitudSinExito();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Revista> ObtenerRevista(int id)
+        {
+            try
+            {
+                return dbContext.Revista.Where(x => x.DocenteId == id).ToList();
             }
             catch (Exception ex)
             {
@@ -93,4 +106,3 @@ namespace TotoToolDB.Classes.Core
 
     }
 }
-*/

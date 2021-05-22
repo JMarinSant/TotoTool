@@ -173,6 +173,8 @@ namespace TotoToolDB.Models
                     .IsUnicode(false)
                     .HasMaxLength(50)
                     .IsRequired();
+                entity.Property(e => e.HistorialDocenteId)
+                    .IsRequired();
                 entity.HasOne(e => e.Docente)
                   .WithMany(y => y.Historial)
                   .HasConstraintName("FK_IdHistorialDocente");
@@ -196,9 +198,14 @@ namespace TotoToolDB.Models
                     .IsRequired();
                 entity.Property(e => e.CategoriaId)
                     .IsRequired();
+                entity.Property(e => e.DocenteId)
+                    .IsRequired();
                 entity.HasOne(e => e.Categoria)
                     .WithMany(y => y.Producto)
                     .HasConstraintName("FK_IdCategoria");
+                entity.HasOne(e => e.Docente)
+                    .WithMany(y => y.Producto)
+                    .HasConstraintName("FK_IdDocenteProducto");
             });
 
             modelBuilder.Entity<ProductoCarrito>(entity => {

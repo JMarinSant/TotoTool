@@ -22,6 +22,7 @@ namespace TotoToolDB.Classes.Error
             return resultado;
         }
 
+
         public Resultado CorreoElectronicoNoRegistrado()
         {
             Resultado resultado;
@@ -42,7 +43,7 @@ namespace TotoToolDB.Classes.Error
         {
             Resultado resultado;
             resultado.codigo = 404;
-            resultado.mensaje = "Este dato no existe en la base de datos.";
+            resultado.mensaje = "No se encontró el paquete de datos.";
             return resultado;
         }
 
